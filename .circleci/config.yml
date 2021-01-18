@@ -8,7 +8,7 @@ jobs:
       #- checkout
       - run:
           name: Add back-end ip to ansible inventory
-          command: >-
+          command: |
             # Your code here
             echo "1234" > inventory.txt
             cat inventory.txt
