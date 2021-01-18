@@ -39,8 +39,8 @@ jobs:
             echo "inventory.txt"
             cat inventory.txt # -> There isn't /root/project/inventory.txt
             ls
-            echo "~/inventory.txt"
-            cat ~/inventory.txt # -> ~/ means /root/. And there isn't /root/project/inventory.txt
+            echo "~/project/inventory.txt"
+            cat ~/project/inventory.txt # -> ~/ means /root/. And there isn't /root/project/inventory.txt
             #echo "~/project/.circleci/inventory.txt"
             #cat ~/project/.circleci/inventory.txt
             echo "ls"
