@@ -36,7 +36,7 @@ jobs:
           command: |
             echo "pwd"
             pwd                    # The result is /root/project
-            cd ..
+            # cd ..
             ls
             echo "inventory.txt"
             cat inventory.txt # -> There isn't /root/project/inventory.txt
