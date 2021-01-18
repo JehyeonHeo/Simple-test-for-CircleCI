@@ -34,5 +34,13 @@ jobs:
             echo "~/project/.circleci/inventory.txt"
             cat ~/project/.circleci/inventory.txt
             echo "ls"
-            ls      
+            ls
+
+workflows:
+  default:
+    jobs:
+      - Add-to-doc
+      - Check-workspace:
+          requires:
+            - Add-to-doc      
           
