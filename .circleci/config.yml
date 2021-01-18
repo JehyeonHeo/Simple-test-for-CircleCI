@@ -30,7 +30,7 @@ jobs:
     steps:
       #- checkout
       - attach_workspace:
-          at: .
+          at: ~/
       - run:
           name: Check workspace path and contents
           command: |
