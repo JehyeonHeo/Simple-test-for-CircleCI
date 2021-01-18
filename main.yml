@@ -1,0 +1,38 @@
+jobs:
+  Add-to-doc:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - run:
+          name: Add back-end ip to ansible inventory
+          command: >-
+            # Your code here
+            echo "1234" >> .circleci/inventory.txt
+      - run:
+          name: Check the contents of inventory.txt
+          command: cat .circleci/inventory.txt
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project/.circleci/inventory.txt
+
+  Check-workspace:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - run:
+          name: Check workspace path and contents
+          command: |
+            echo "pwd"
+            pwd                    # The result is /root/project
+            # echo "inventory.txt"
+            # cat inventory.txt -> There isn't /root/project/inventory.txt
+            #echo "~/inventory.txt"
+            #cat ~/inventory.txt -> ~/ means /root/. And there isn't /root/project/inventory.txt
+            echo "~/project/.circleci/inventory.txt"
+            cat ~/project/.circleci/inventory.txt
+            echo "ls"
+            ls      
+          
