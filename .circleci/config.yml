@@ -1,3 +1,5 @@
+version: 1
+
 jobs:
   Add-to-doc:
     docker:
