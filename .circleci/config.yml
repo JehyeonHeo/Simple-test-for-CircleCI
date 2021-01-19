@@ -96,8 +96,8 @@ jobs:
             pwd                    # The result is /root/project
             ls -a
             echo "2. project"
-            echo ".circleci/testfile.txt"
-            cat .circleci/testfile.txt # -> There isn't /root/project/inventory.txt
+            echo "~/project/project/.circleci/testfile.txt"
+            cat ~/project/project/.circleci/testfile.txt # -> There isn't /root/project/inventory.txt
             # ls
             #echo "~/project/inventory.txt"
             #cat ~/project/inventory.txt # -> ~/ means /root/. And there isn't /root/project/inventory.txt
