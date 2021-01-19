@@ -103,6 +103,9 @@ jobs:
             cd project/.circleci
             ls
             cat testfile.txt
+            echo "4. Try again cd project"
+            cd project
+            ls
             #echo "~/project/inventory.txt"
             #cat ~/project/inventory.txt # -> ~/ means /root/. And there isn't /root/project/inventory.txt
             #echo "~/project/.circleci/inventory.txt"
