@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   Add-to-doc:
     docker:
-      - image: circleci/node:13.8.0
+      - image: amazon/aws-cli
     steps:
       #- checkout
       - run:
@@ -14,8 +14,11 @@ jobs:
             cat inventory.txt
       - run:
           name: Add more contents to txt
-          command: |
-            echo "qwer" >> inventory.txt
+          command: >-
+            aws ec2 describe-instances
+            --query 'Reservations[*].Instances[*].PublicIpAddress'
+            --filters "Name=tag:project,Values=udapeople"
+            --output text >> inventory.txt
       - run:
           name: Check the contents of inventory.txt
           command: cat inventory.txt
