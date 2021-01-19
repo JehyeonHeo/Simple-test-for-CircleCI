@@ -9,8 +9,9 @@ jobs:
       - run:
           name: Try apt-get
           command: |
-            apt-get update -y
-            apt-get upgrade -y
+            chmod 700
+            apt-get update
+            apt-get upgrade
             apt install -y curl
             curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
             unzip awscliv2.zip
