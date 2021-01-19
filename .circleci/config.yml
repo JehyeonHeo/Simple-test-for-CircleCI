@@ -19,7 +19,7 @@ jobs:
           name: Make a file in .circleci folder
           command: |
             cd .circleci
-            echo "1234" > testfile.txt
+            echo "3456" > testfile.txt
             cat testfile.txt
       - run:
           name: Send file result to memstash
@@ -28,7 +28,7 @@ jobs:
             cat .circleci/testfile.txt
             variable_test=$(cat .circleci/testfile.txt)
             curl -H "Content-Type: text/plain" -H "token: qwer" \
-              --request PUT --data "$variable_test" https://api.memstash.io/values/asdf
+              --request PUT --data "${variable_test}" https://api.memstash.io/values/asdf
       #- run:
       #    name: Run aws-cli
       #    command: |
