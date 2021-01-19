@@ -26,7 +26,7 @@ jobs:
           name: Install tar, gzip to use workspace.
           command: | 
             yum update
-            yum install tar gzip
+            yum install -y tar gzip
       - persist_to_workspace:
           root: ~/
           paths:
