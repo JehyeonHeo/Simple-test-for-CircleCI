@@ -98,7 +98,11 @@ jobs:
             echo "2. project"
             echo "~/project/project/.circleci/testfile.txt"
             cat ~/project/project/.circleci/testfile.txt # -> There isn't /root/project/inventory.txt
-            # ls
+            echo "3. project/.circleci"
+            echo "/root/project/project/.circleci/testfile.txt"
+            cd project/.circleci
+            ls
+            cat testfile.txt
             #echo "~/project/inventory.txt"
             #cat ~/project/inventory.txt # -> ~/ means /root/. And there isn't /root/project/inventory.txt
             #echo "~/project/.circleci/inventory.txt"
