@@ -14,6 +14,14 @@ jobs:
             unzip awscliv2.zip
             ./aws/install
       - run:
+          name: Run aws-cli
+          command: |
+            aws ec2 describe-instances \
+              --query 'Reservations[*].Instances[*].PublicIpAddress' \
+              --filters "Name=tag:project,Values=udapeople" \
+              --output text >> zxcv
+            cat zxcv
+      - run:
           name: Add back-end ip to ansible inventory
           command: |
             # Your code here
