@@ -77,7 +77,8 @@ jobs:
             nvm install v9.4.0
             #source .bash_profile
             #yum install -y nodejs npm
-            nodejs -v
+            node -v
+            npm -v
       - attach_workspace:
           at: ~/
       - run:
