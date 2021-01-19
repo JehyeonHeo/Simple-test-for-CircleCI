@@ -90,6 +90,10 @@ jobs:
             ls
             cd project
             ls
+            cd project
+            ls
+            cd .circleci
+            ls
             echo "project/.circleci/testfile.txt"
             cat project/.circleci/testfile.txt # -> There isn't /root/project/inventory.txt
             # ls
