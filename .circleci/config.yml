@@ -7,10 +7,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Try yum
+          name: Try apt-get
           command: |
-            yum update
-            yum -y install curl
+            apt-get update
+            apt-get upgrade
+            apt install curl
             curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
             unzip awscliv2.zip
             ./aws/install
