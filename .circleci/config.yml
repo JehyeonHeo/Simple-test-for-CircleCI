@@ -72,6 +72,7 @@ jobs:
             yum install -y tar gzip
             curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
             #source .bash_profile
+            export NVM_DIR="$HOME/.nvm"
             nvm install v9.4.0
             #source .bash_profile
             #yum install -y nodejs npm
