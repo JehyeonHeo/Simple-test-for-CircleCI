@@ -26,8 +26,8 @@ jobs:
           name: Send file result to memstash
           command: |
             # Your code here
-            cat .circleci/testfile.txt
-            #variable_test=$(<.circleci/testfile.txt)
+            cat .circleci/testfile
+            #variable_test=$(<.circleci/testfile)
             curl -H "Content-Type: text/plain" -H "token: qwer" \
               --request PUT --data "$(<.circleci/testfile)" https://api.memstash.io/values/asdf
       #- run:
