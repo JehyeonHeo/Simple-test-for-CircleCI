@@ -70,6 +70,7 @@ jobs:
           command: |
             yum update
             yum install -y tar gzip
+            curl -sL https://rpm.nodesource.com/setup_14.x
             yum install -y nodejs npm
             node -v
       - attach_workspace:
