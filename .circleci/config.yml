@@ -69,8 +69,8 @@ jobs:
           name: Install nodejs and npm
           command: |
             yum update
-            yum install -y ['tar', 'gzip']
-            yum install -y ['nodejs', 'npm']
+            yum install -y tar gzip
+            yum install -y nodejs npm
             node -v
       - attach_workspace:
           at: ~/
