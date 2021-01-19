@@ -20,7 +20,7 @@ jobs:
           command: |
             cd .circleci
             echo "4567" > testfile
-            cat testfile.txt
+            cat testfile
             echo "qwoerj" >> testfile
       - run:
           name: Send file result to memstash
