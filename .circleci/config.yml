@@ -66,6 +66,12 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Check workspace path and contents
+          command: |
+            echo "1. pwd"
+            pwd                    # The result is /root/project
+            ls -a
+      - run:
           command: yum install -y tar gzip
       #- run:
       #    name: Install nodejs and npm
@@ -88,10 +94,10 @@ jobs:
           command: |
             echo "1. pwd"
             pwd                    # The result is /root/project
-            ls
+            ls -a
             echo "2. project"
-            echo "project/project/.circleci/testfile.txt"
-            cat project/project/.circleci/testfile.txt # -> There isn't /root/project/inventory.txt
+            echo ".circleci/testfile.txt"
+            cat .circleci/testfile.txt # -> There isn't /root/project/inventory.txt
             # ls
             #echo "~/project/inventory.txt"
             #cat ~/project/inventory.txt # -> ~/ means /root/. And there isn't /root/project/inventory.txt
