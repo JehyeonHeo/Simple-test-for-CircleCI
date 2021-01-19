@@ -22,6 +22,11 @@ jobs:
       - run:
           name: Check the contents of inventory.txt
           command: cat inventory.txt
+      - run:
+          name: Install tar, gzip to use workspace.
+          command: | 
+            yum update
+            yum install tar gzip
       - persist_to_workspace:
           root: ~/
           paths:
