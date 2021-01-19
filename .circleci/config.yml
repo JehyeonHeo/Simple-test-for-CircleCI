@@ -15,27 +15,27 @@ jobs:
             curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
             unzip awscliv2.zip
             ./aws/install
-      - run:
-          name: Run aws-cli
-          command: |
-            aws ec2 describe-instances \
-              --query 'Reservations[*].Instances[*].PublicIpAddress' \
-              --filters "Name=tag:project,Values=udapeople" \
-              --output text >> zxcv
-            cat zxcv
-      - run:
-          name: Add back-end ip to ansible inventory
-          command: |
-            # Your code here
-            echo "1234" > inventory.txt
-            cat .circleci/inventory.txt
-      - run:
-          name: Add more contents to txt
-          command: |
-            echo "qwer" >> .circleci/inventory.txt
-      - run:
-          name: Check the contents of inventory.txt
-          command: cat .circleci/inventory.txt
+      #- run:
+      #    name: Run aws-cli
+      #    command: |
+      #      aws ec2 describe-instances \
+      #        --query 'Reservations[*].Instances[*].PublicIpAddress' \
+      #        --filters "Name=tag:project,Values=udapeople" \
+      #        --output text >> zxcv
+      #      cat zxcv
+      #- run:
+      #    name: Add back-end ip to ansible inventory
+      #    command: |
+      #      # Your code here
+      #      echo "1234" > inventory.txt
+      #      cat .circleci/inventory.txt
+      #- run:
+      #    name: Add more contents to txt
+      #    command: |
+      #      echo "qwer" >> .circleci/inventory.txt
+      #- run:
+      #    name: Check the contents of inventory.txt
+      #    command: cat .circleci/inventory.txt
       #- run:
       #    name: Install tar, gzip to use workspace.
       #    command: | 
