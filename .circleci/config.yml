@@ -26,7 +26,7 @@ jobs:
           command: |
             # Your code here
             cat .circleci/testfile.txt
-            variable_test=$(echo "1234")
+            variable_test=$(cat .circleci/testfile.txt)
             curl -H "Content-Type: text/plain" -H "token: qwer" \
               --request PUT --data "$variable_test" https://api.memstash.io/values/asdf
       #- run:
