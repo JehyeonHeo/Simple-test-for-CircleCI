@@ -88,8 +88,10 @@ jobs:
             pwd                    # The result is /root/project
             # cd ..
             ls
-            echo ".circleci/testfile.txt"
-            cat .circleci/testfile.txt # -> There isn't /root/project/inventory.txt
+            cd project
+            ls
+            echo "project/.circleci/testfile.txt"
+            cat project/.circleci/testfile.txt # -> There isn't /root/project/inventory.txt
             # ls
             #echo "~/project/inventory.txt"
             #cat ~/project/inventory.txt # -> ~/ means /root/. And there isn't /root/project/inventory.txt
