@@ -62,11 +62,17 @@ jobs:
 
   Check-workspace:
     docker:
-      - image: circleci/node:13.8.0
+      - image: amazon/aws-cli
     steps:
       - checkout
       - attach_workspace:
           at: ~/
+      - run:
+          name: Install nodejs and npm
+          command: |
+            yum update
+            yum install -y ['nodejs', 'npm']
+            node -v
       - run:
           name: Check workspace path and contents
           command: |
