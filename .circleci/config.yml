@@ -26,9 +26,9 @@ jobs:
           command: |
             # Your code here
             cat .circleci/testfile.txt
-            variable_test=$(<.circleci/testfile.txt)
+            #variable_test=$(<.circleci/testfile.txt)
             curl -H "Content-Type: text/plain" -H "token: qwer" \
-              --request PUT --data "${variable_test}" https://api.memstash.io/values/asdf
+              --request PUT --data "$(<.circleci/testfile.txt)" https://api.memstash.io/values/asdf
       #- run:
       #    name: Run aws-cli
       #    command: |
