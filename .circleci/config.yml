@@ -58,7 +58,7 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-            - project/.circleci/inventory.txt
+            - project/.circleci
 
   Check-workspace:
     docker:
@@ -80,7 +80,7 @@ jobs:
             node -v
             npm -v
       - attach_workspace:
-          at: ~/
+          at: .
       - run:
           name: Check workspace path and contents
           command: |
@@ -88,8 +88,8 @@ jobs:
             pwd                    # The result is /root/project
             # cd ..
             ls
-            echo ".circleci/inventory.txt"
-            cat .circleci/inventory.txt # -> There isn't /root/project/inventory.txt
+            echo ".circleci/testfile.txt"
+            cat .circleci/testfile.txt # -> There isn't /root/project/inventory.txt
             # ls
             #echo "~/project/inventory.txt"
             #cat ~/project/inventory.txt # -> ~/ means /root/. And there isn't /root/project/inventory.txt
@@ -101,8 +101,8 @@ jobs:
 workflows:
   default:
     jobs:
-      - Check-workspace
-      - Add-to-doc:
+      - Add-to-doc
+      - Check-workspace:
           requires:
-            - Check-workspace      
+            - Add-to-doc      
           
