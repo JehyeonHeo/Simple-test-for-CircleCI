@@ -27,7 +27,7 @@ jobs:
             # Your code here
             cat .circleci/testfile.txt
             curl -H "Content-Type: text/plain" -H "token: qwer" \
-              --request PUT --data "${<.circleci/testfile.txt}" https://api.memstash.io/values/asdf
+              --request PUT --data "5678" https://api.memstash.io/values/asdf
       #- run:
       #    name: Run aws-cli
       #    command: |
