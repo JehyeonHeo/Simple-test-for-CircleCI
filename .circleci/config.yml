@@ -65,14 +65,15 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
-      - attach_workspace:
-          at: ~/
       - run:
           name: Install nodejs and npm
           command: |
             yum update
+            yum install -y ['tar', 'gzip']
             yum install -y ['nodejs', 'npm']
             node -v
+      - attach_workspace:
+          at: ~/
       - run:
           name: Check workspace path and contents
           command: |
@@ -93,8 +94,8 @@ jobs:
 workflows:
   default:
     jobs:
-      - Add-to-doc
-      - Check-workspace:
+      - Check-workspace
+      - Add-to-doc:
           requires:
-            - Add-to-doc      
+            - Check-workspace      
           
