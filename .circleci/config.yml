@@ -95,6 +95,10 @@ jobs:
             cd ..
             echo "/root"
             ls
+            echo "tar unzip"
+            tar -xzvf cir.tar.gz
+            ls
+            cd cir
       #- run:
       #    name: Install nodejs and npm
       #    command: |
