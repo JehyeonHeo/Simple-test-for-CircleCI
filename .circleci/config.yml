@@ -105,11 +105,8 @@ jobs:
           name: Install nodejs and npm
           command: |
             yum update
-            yum install -y tar gzip
-            curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
-            #source .bash_profile
-            export NVM_DIR="$HOME/.nvm"
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+            . ~/.nvm/nvm.sh
             nvm install v9.4.0
             #source .bash_profile
             #yum install -y nodejs npm
@@ -122,6 +119,9 @@ jobs:
           name: check npm in inner folder
           command: |
             npm --prefix .circleci -v
+            cd .circleci
+            echo "in .circleci"
+            npm -v
       - run:
           name: Check workspace path and contents
           command: |
