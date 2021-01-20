@@ -120,8 +120,7 @@ jobs:
       - run:
           name: check npm in inner folder
           command: |
-            cd .circleci
-            npm -v
+            npm --prefix .circleci -v
       - run:
           name: Check workspace path and contents
           command: |
