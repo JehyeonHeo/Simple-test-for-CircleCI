@@ -116,6 +116,7 @@ jobs:
             cd frontend
             echo "in frontend"
             npm -v
+            npm i
             npm run build
       #- attach_workspace:
       #    at: .
