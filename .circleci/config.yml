@@ -91,14 +91,16 @@ jobs:
           name: Get tar.gz file and check the contents
           command: |
             pwd
-            ls
+            ls -a
             cd ..
             echo "/root"
-            ls
+            ls -a
             echo "tar unzip"
             tar -xzvf cir.tar.gz
-            ls
-            cd cir
+            ls -a
+            echo "move to .circleci"
+            cd .circleci
+            ls -a
       #- run:
       #    name: Install nodejs and npm
       #    command: |
