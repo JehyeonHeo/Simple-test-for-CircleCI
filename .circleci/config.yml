@@ -18,8 +18,9 @@ jobs:
       - run:
           name: Compress backend file
           command: |
+            pwd
             ls
-            tar -czvf backend.tar.gz project/.circleci/backend
+            #tar -czvf backend.tar.gz project/.circleci/backend
       - persist_to_workspace:
           root: .
           paths:
