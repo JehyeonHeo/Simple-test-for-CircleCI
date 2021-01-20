@@ -149,8 +149,8 @@ jobs:
 workflows:
   default:
     jobs:
-      - Add-to-doc
-      - Check-workspace:
-          requires:
-            - Add-to-doc      
+      #- Add-to-doc
+      - Check-workspace
+      #    requires:
+      #      - Add-to-doc      
           
