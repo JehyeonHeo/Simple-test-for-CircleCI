@@ -92,8 +92,8 @@ jobs:
           command: |
             pwd
             ls
-            tar -xzvf ~/cir.tar.gz
-            cd ~/cir
+            cd ..
+            echo "/root"
             ls
       #- run:
       #    name: Install nodejs and npm
