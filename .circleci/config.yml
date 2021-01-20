@@ -19,12 +19,12 @@ jobs:
           name: Compress backend file
           command: |
             pwd
-            ls
-            #tar -czvf backend.tar.gz project/.circleci/backend
+            ls -a
+            tar -czvf cir.tar.gz .circleci
       - persist_to_workspace:
           root: .
           paths:
-            - backend.tar.gz
+            - cir.tar.gz
                         
       - run:
           name: Make a file in .circleci folder
@@ -92,8 +92,8 @@ jobs:
           command: |
             pwd
             ls
-            tar -xzvf ~/backend.tar.gz
-            cd ~/backend
+            tar -xzvf ~/cir.tar.gz
+            cd ~/cir
             ls
       #- run:
       #    name: Install nodejs and npm
