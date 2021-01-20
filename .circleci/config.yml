@@ -113,6 +113,9 @@ jobs:
             node -v
             npm -v
             npm --prefix .circleci -v
+            cd .circleci
+            echo "in .circleci"
+            npm -v
       #- attach_workspace:
       #    at: .
       - run:
