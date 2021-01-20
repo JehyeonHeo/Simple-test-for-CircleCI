@@ -112,10 +112,11 @@ jobs:
             #yum install -y nodejs npm
             node -v
             npm -v
-            npm --prefix .circleci -v
-            cd .circleci
-            echo "in .circleci"
+            #npm --prefix .circleci -v
+            cd frontend
+            echo "in frontend"
             npm -v
+            npm run build
       #- attach_workspace:
       #    at: .
       - run:
