@@ -16,6 +16,15 @@ jobs:
       #      unzip awscliv2.zip
       #      ./aws/install
       - run:
+          name: Compress backend file
+          command: |
+            tar -czvf backend.tar.gz .circleci/backend
+      - persist_to_workspace:
+          root: .
+          paths:
+            - backend.tar.gz
+                        
+      - run:
           name: Make a file in .circleci folder
           command: |
             cd .circleci
@@ -74,6 +83,16 @@ jobs:
             ls -a
       - run:
           command: yum install -y tar gzip
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Get tar.gz file and check the contents
+          command: |
+            pwd
+            ls
+            tar -xzvf ~/backend.tar.gz
+            cd ~/backend
+            ls
       #- run:
       #    name: Install nodejs and npm
       #    command: |
