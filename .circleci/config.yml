@@ -95,7 +95,12 @@ jobs:
             export STACKS=$(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
               --stack-status-filter CREATE_COMPLETE --no-paginate --output text)
             echo "${OldWorkflowID}"
-            echo "${STACKS}"  
+            echo "${STACKS}"
+            for asd in "${STACKS[@]}"
+            do
+              echo $asd
+            done
+
             if [[ "${STACKS[@]}" =~ "${OldWorkflowID}" ]]
             then
               # your code here
