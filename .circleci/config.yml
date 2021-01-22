@@ -96,7 +96,7 @@ jobs:
               --stack-status-filter CREATE_COMPLETE --no-paginate --output text)
             echo "${OldWorkflowID}"
             echo "${STACKS}"
-            for asd in "${STACKS[@]}"
+            for asd in "${STACKS[@]:-7:}"
             do
               echo $asd
             done
