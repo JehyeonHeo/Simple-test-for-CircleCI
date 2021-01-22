@@ -96,6 +96,13 @@ jobs:
               --stack-status-filter CREATE_COMPLETE --no-paginate --output text)
             echo "${OldWorkflowID}"
             echo "${STACKS}"  
+            if [[ "${STACKS[@]:-7:}" =~ "${OldWorkflowID}" ]]
+            then
+              # your code here
+              echo "Not same"
+            else
+              echo "Same"
+            fi
       #- run:
       #    name: Get tar.gz file and check the contents
       #    command: |
