@@ -96,7 +96,7 @@ jobs:
               --stack-status-filter CREATE_COMPLETE --no-paginate --output text)
             echo "${OldWorkflowID}"
             echo "${STACKS}"  
-            if [[ "${STACKS[@]:-7:}" =~ "${OldWorkflowID}" ]]
+            if [[ "${STACKS[@]}" =~ "${OldWorkflowID}" ]]
             then
               # your code here
               echo "Not same"
