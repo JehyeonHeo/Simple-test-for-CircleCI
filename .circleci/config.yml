@@ -92,7 +92,10 @@ jobs:
             export OldWorkflowID=$(aws cloudformation \
               list-exports --query "Exports[?Name=='WorkflowID'].Value" \
               --no-paginate --output text)
+            export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
+              --stack-status-filter CREATE_COMPLETE --no-paginate --output text
             echo "${OldWorkflowID}"
+            echo "${STACKS}"  
       #- run:
       #    name: Get tar.gz file and check the contents
       #    command: |
