@@ -100,7 +100,7 @@ jobs:
             do
               echo $asd
             done
-
+            echo "${STACKS[@]}"
             if [[ "${STACKS[@]}" =~ "${OldWorkflowID}" ]]
             then
               # your code here
