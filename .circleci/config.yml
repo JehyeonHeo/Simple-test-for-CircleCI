@@ -90,7 +90,7 @@ jobs:
       - run:
           command: |
             cat ~/.circleci/testfile
-            export OldWorkflowID=$(cat ~/OldWorkflowID.txt)
+            export OldWorkflowID="3ed1118"
             export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
               --stack-status-filter CREATE_COMPLETE --no-paginate --output text))
             echo "${OldWorkflowID}"
