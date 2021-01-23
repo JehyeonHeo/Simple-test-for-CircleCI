@@ -68,9 +68,9 @@ jobs:
       #      yum update
       #      yum install -y tar gzip
       - persist_to_workspace:
-          root: ~/
+          root: .
           paths:
-            - project/.circleci
+            - .circleci/testfile
 
   Check-workspace:
     docker:
@@ -89,25 +89,28 @@ jobs:
           at: ~/
       - run:
           command: |
-            export OldWorkflowID=$(aws cloudformation \
-              list-exports --query "Exports[?Name=='WorkflowID'].Value" \
-              --no-paginate --output text)
-            export STACKS=$(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
-              --stack-status-filter CREATE_COMPLETE --no-paginate --output text)
+            cat ~/.circleci/testfile
+            export OldWorkflowID=$(cat ~/OldWorkflowID.txt)
+            export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
+              --stack-status-filter CREATE_COMPLETE --no-paginate --output text))
             echo "${OldWorkflowID}"
-            echo "${STACKS}"
-            for asd in "${STACKS[@]:0:7}"
+            echo "${STACKS[@]}"
+            
+            for id in "${STACKS[@]}"
             do
-              echo $asd
+              echo $id
+              if [[ ${id: -7} == "${OldWorkflowID}" ]]
+              then
+                # your code here
+                if [[ "${STACKS[@]}" == *${id}* ]]
+                then
+                  echo "Delete old S3 and old stacks"
+                else
+                  echo "Already deleted"   
+              else
+                echo "Should not delete newly launched stacks"
+              fi
             done
-            echo "${STACKS[0]}"
-            if [[ "${STACKS[@]}" =~ "${OldWorkflowID}" ]]
-            then
-              # your code here
-              echo "Not same"
-            else
-              echo "Same"
-            fi
       #- run:
       #    name: Get tar.gz file and check the contents
       #    command: |
@@ -122,49 +125,49 @@ jobs:
       #      echo "move to .circleci"
       #      cd .circleci
       #      ls -a
-      - run:
-          name: Install nodejs and npm
-          command: |
-            yum update
-            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-            . ~/.nvm/nvm.sh
-            nvm install v9.4.0
-            #source .bash_profile
-            #yum install -y nodejs npm
-            node -v
-            npm -v
-            #npm --prefix .circleci -v
-            cd frontend
-            echo "in frontend"
-            npm -v
-            npm i
-            npm run build
+      #- run:
+      #    name: Install nodejs and npm
+      #    command: |
+      #      yum update
+      #      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+      #      . ~/.nvm/nvm.sh
+      #      nvm install v9.4.0
+      #      #source .bash_profile
+      #      #yum install -y nodejs npm
+      #      node -v
+      #      npm -v
+      #      #npm --prefix .circleci -v
+      #      cd frontend
+      #      echo "in frontend"
+      #      npm -v
+      #      npm i
+      #      npm run build
       #- attach_workspace:
       #    at: .
-      - run:
-          name: check npm in inner folder
-          command: |
-            npm --prefix .circleci -v
-            cd .circleci
-            echo "in .circleci"
-            npm -v
-      - run:
-          name: Check workspace path and contents
-          command: |
-            echo "1. pwd"
-            pwd                    # The result is /root/project
-            ls -a
-            echo "2. project"
-            echo "~/project/project/.circleci/testfile.txt"
-            cat ~/project/project/.circleci/testfile.txt # -> There isn't /root/project/inventory.txt
-            echo "3. project/.circleci"
-            echo "/root/project/project/.circleci/testfile.txt"
-            cd project/.circleci
-            ls
-            cat testfile.txt
-            echo "4. Try again cd project"
-            cd project
-            ls
+      #- run:
+      #    name: check npm in inner folder
+      #    command: |
+      #      npm --prefix .circleci -v
+      #      cd .circleci
+      #      echo "in .circleci"
+      #      npm -v
+      #- run:
+      #    name: Check workspace path and contents
+      #    command: |
+      #      echo "1. pwd"
+      #      pwd                    # The result is /root/project
+      #      ls -a
+      #      echo "2. project"
+      #      echo "~/project/project/.circleci/testfile.txt"
+      #      cat ~/project/project/.circleci/testfile.txt # -> There isn't /root/project/inventory.txt
+      #      echo "3. project/.circleci"
+      #      echo "/root/project/project/.circleci/testfile.txt"
+      #      cd project/.circleci
+      #      ls
+      #      cat testfile.txt
+      #      echo "4. Try again cd project"
+      #      cd project
+      #      ls
             #echo "~/project/inventory.txt"
             #cat ~/project/inventory.txt # -> ~/ means /root/. And there isn't /root/project/inventory.txt
             #echo "~/project/.circleci/inventory.txt"
@@ -175,8 +178,8 @@ jobs:
 workflows:
   default:
     jobs:
-      #- Add-to-doc
+      - Add-to-doc
       - Check-workspace
-      #    requires:
-      #      - Add-to-doc      
+          requires:
+            - Add-to-doc      
           
