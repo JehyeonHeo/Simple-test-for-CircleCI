@@ -102,7 +102,9 @@ jobs:
               if [[ ${id: -7} == "${OldWorkflowID}" ]]
               then
                 # your code here
-                if [[ "${STACKS[@]}" == *${id}* ]]
+                STACKS_REV=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" \
+                  --stack-status-filter CREATE_COMPLETE --no-paginate --output text))
+                if [[ "${STACKS_REV[@]}" == *${id}* ]]
                 then
                   echo "Delete old S3 and old stacks"
                 else
