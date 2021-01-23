@@ -106,7 +106,8 @@ jobs:
                 then
                   echo "Delete old S3 and old stacks"
                 else
-                  echo "Already deleted"   
+                  echo "Already deleted"
+                fi 
               else
                 echo "Should not delete newly launched stacks"
               fi
