@@ -179,7 +179,7 @@ workflows:
   default:
     jobs:
       - Add-to-doc
-      - Check-workspace
-          requires:
+      - Check-workspace:
+          requires: 
             - Add-to-doc      
           
